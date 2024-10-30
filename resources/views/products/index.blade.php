@@ -164,7 +164,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">GAMBAR</th>
-                                    <th scope="col">JUDUL</th>
+                                    <th scope="col">NAMA BAHAN</th>
                                     <th scope="col">HARGA</th>
                                     <th scope="col">STOK</th>
                                     <th scope="col" style="width: 20%">MENU</th>

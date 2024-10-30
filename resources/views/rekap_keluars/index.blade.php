@@ -18,15 +18,15 @@
                 </div>
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <a href="{{ route('rekap_keluars.create') }}" class="btn btn-md btn-success mb-3">ADD PRODUCT</a>
+                        <a href="{{ route('rekap_keluars.create') }}" class="btn btn-md btn-success mb-3">TAMBAHKAN PRODUK</a>
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th scope="col">IMAGE</th>
-                                    <th scope="col">TITLE</th>
-                                    <th scope="col">PRICE</th>
-                                    <th scope="col">STOCK</th>
-                                    <th scope="col" style="width: 20%">ACTIONS</th>
+                                    <th scope="col">GAMBAR</th>
+                                    <th scope="col">NAMA BAHAN</th>
+                                    <th scope="col">HARGA</th>
+                                    <th scope="col">STOK</th>
+                                    <th scope="col" style="width: 20%">MENU</th>
                                 </tr>
                             </thead>
                             <tbody>

@@ -19,7 +19,7 @@
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">IMAGE</label>
+                                <label class="font-weight-bold">GAMBAR</label>
                                 <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
                             
                                 <!-- error message untuk image -->
@@ -31,8 +31,8 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">TITLE</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Masukkan Judul Product">
+                                <label class="font-weight-bold">NAMA BAHAN</label>
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Masukkan Nama Bahan">
                             
                                 <!-- error message untuk title -->
                                 @error('title')
@@ -43,8 +43,8 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">DESCRIPTION</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Description Product">{{ old('description') }}</textarea>
+                                <label class="font-weight-bold">DESKRIPSI</label>
+                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Deskripsi Bahan">{{ old('description') }}</textarea>
                             
                                 <!-- error message untuk description -->
                                 @error('description')
@@ -57,8 +57,8 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label class="font-weight-bold">PRICE</label>
-                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="Masukkan Harga Product">
+                                        <label class="font-weight-bold">HARGA</label>
+                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price') }}" placeholder="Masukkan Harga Bahan">
                                     
                                         <!-- error message untuk price -->
                                         @error('price')
@@ -70,8 +70,8 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label class="font-weight-bold">STOCK</label>
-                                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" placeholder="Masukkan Stock Product">
+                                        <label class="font-weight-bold">STOK</label>
+                                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock') }}" placeholder="Masukkan Stok Bahan">
                                     
                                         <!-- error message untuk stock -->
                                         @error('stock')
@@ -83,8 +83,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-md btn-primary me-3">SAVE</button>
-                            <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                            <button type="submit" class="btn btn-md btn-primary me-3">SIMPAN</button>
+                            <button type="reset" class="btn btn-md btn-warning">ATUR ULANG</button>
 
                         </form> 
                     </div>
