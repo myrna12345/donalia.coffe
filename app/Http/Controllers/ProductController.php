@@ -178,3 +178,8 @@ class ProductController extends Controller
 
         //delete product
         $product->delete();
+
+        //redirect to index
+        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
+    }
+}
