@@ -2,20 +2,10 @@
 
 namespace App\Http\Controllers;
 
-//import model product
-use App\Models\Product; 
-
-//import return type View
+use App\Models\Product;
 use Illuminate\View\View;
-
-//import return type redirectResponse
 use Illuminate\Http\Request;
-
-//import Http Request
 use Illuminate\Http\RedirectResponse;
-
-//import Facades Storage
-use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -53,20 +43,14 @@ class ProductController extends Controller
     {
         //validate form
         $request->validate([
-            'image'         => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
             'price'         => 'required|numeric',
             'stock'         => 'required|numeric'
         ]);
 
-        //upload image
-        $image = $request->file('image');
-        $image->storeAs('storage/products', $image->hashName());
-
         //create product
         Product::create([
-            'image'         => $image->hashName(),
             'title'         => $request->title,
             'description'   => $request->description,
             'price'         => $request->price,
@@ -118,7 +102,6 @@ class ProductController extends Controller
     {
         //validate form
         $request->validate([
-            'image'         => 'image|mimes:jpeg,jpg,png|max:2048',
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
             'price'         => 'required|numeric',
@@ -128,35 +111,13 @@ class ProductController extends Controller
         //get product by ID
         $product = Product::findOrFail($id);
 
-        //check if image is uploaded
-        if ($request->hasFile('image')) {
-
-            //upload new image
-            $image = $request->file('image');
-            $image->storeAs('public/products', $image->hashName());
-
-            //delete old image
-            Storage::delete('public/products/'.$product->image);
-
-            //update product with new image
-            $product->update([
-                'image'         => $image->hashName(),
-                'title'         => $request->title,
-                'description'   => $request->description,
-                'price'         => $request->price,
-                'stock'         => $request->stock
-            ]);
-
-        } else {
-
-            //update product without image
-            $product->update([
-                'title'         => $request->title,
-                'description'   => $request->description,
-                'price'         => $request->price,
-                'stock'         => $request->stock
-            ]);
-        }
+        //update product
+        $product->update([
+            'title'         => $request->title,
+            'description'   => $request->description,
+            'price'         => $request->price,
+            'stock'         => $request->stock
+        ]);
 
         //redirect to index
         return redirect()->route('products.index')->with(['success' => 'Data Berhasil Diubah!']);
@@ -172,9 +133,6 @@ class ProductController extends Controller
     {
         //get product by ID
         $product = Product::findOrFail($id);
-
-        //delete image
-        Storage::delete('public/products/'. $product->image);
 
         //delete product
         $product->delete();

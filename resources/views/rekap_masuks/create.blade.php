@@ -19,8 +19,7 @@
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">GAMBAR</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+
                             
                                 <!-- error message untuk image -->
                                 @error('image')
@@ -43,7 +42,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">DESKRIPSI</label>
+                                <label class="font-weight-bold">KATEGORI</label>
                                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Deskripsi Bahan">{{ old('description') }}</textarea>
                             
                                 <!-- error message untuk description -->

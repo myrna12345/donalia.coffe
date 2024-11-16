@@ -14,12 +14,9 @@ use Illuminate\Http\RedirectResponse;
 //import Http Request
 use Illuminate\Http\Request;
 
-//import Facades Storage
-use Illuminate\Support\Facades\Storage;
-
 class Rekap_KeluarController extends Controller
 {
-         /**
+    /**
      * index
      *
      * @return void
@@ -32,7 +29,8 @@ class Rekap_KeluarController extends Controller
         //render view with rekap_keluars
         return view('rekap_keluars.index', compact('rekap_keluars'));
     }
-     /**
+
+    /**
      * create
      *
      * @return View
@@ -52,20 +50,14 @@ class Rekap_KeluarController extends Controller
     {
         //validate form
         $request->validate([
-            'image'         => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
             'price'         => 'required|numeric',
             'stock'         => 'required|numeric'
         ]);
 
-        //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/rekap_keluars', $image->hashName());
-
         //create rekap_keluar
         Rekap_Keluar::create([
-            'image'         => $image->hashName(),
             'title'         => $request->title,
             'description'   => $request->description,
             'price'         => $request->price,
@@ -75,7 +67,8 @@ class Rekap_KeluarController extends Controller
         //redirect to index
         return redirect()->route('rekap_keluars.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
-        /**
+
+    /**
      * show
      *
      * @param  mixed $id
@@ -89,6 +82,7 @@ class Rekap_KeluarController extends Controller
         //render view with rekap_keluar
         return view('rekap_keluars.show', compact('rekap_keluar'));
     }
+
     /**
      * edit
      *
@@ -103,7 +97,7 @@ class Rekap_KeluarController extends Controller
         //render view with rekap_keluar
         return view('rekap_keluars.edit', compact('rekap_keluar'));
     }
-        
+
     /**
      * update
      *
@@ -115,7 +109,6 @@ class Rekap_KeluarController extends Controller
     {
         //validate form
         $request->validate([
-            'image'         => 'image|mimes:jpeg,jpg,png|max:2048',
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
             'price'         => 'required|numeric',
@@ -125,39 +118,18 @@ class Rekap_KeluarController extends Controller
         //get rekap_keluar by ID
         $rekap_keluar = Rekap_Keluar::findOrFail($id);
 
-        //check if image is uploaded
-        if ($request->hasFile('image')) {
-
-            //upload new image
-            $image = $request->file('image');
-            $image->storeAs('public/rekap_keluars', $image->hashName());
-
-            //delete old image
-            Storage::delete('public/rekap_keluars/'.$rekap_keluar->image);
-
-            //update rekap_keluar with new image
-            $rekap_keluar->update([
-                'image'         => $image->hashName(),
-                'title'         => $request->title,
-                'description'   => $request->description,
-                'price'         => $request->price,
-                'stock'         => $request->stock
-            ]);
-
-        } else {
-
-            //update rekap_keluar without image
-            $rekap_keluar->update([
-                'title'         => $request->title,
-                'description'   => $request->description,
-                'price'         => $request->price,
-                'stock'         => $request->stock
-            ]);
-        }
+        //update rekap_keluar
+        $rekap_keluar->update([
+            'title'         => $request->title,
+            'description'   => $request->description,
+            'price'         => $request->price,
+            'stock'         => $request->stock
+        ]);
 
         //redirect to index
         return redirect()->route('rekap_keluars.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
+
     /**
      * destroy
      *
@@ -168,9 +140,6 @@ class Rekap_KeluarController extends Controller
     {
         //get rekap_keluar by ID
         $rekap_keluar = Rekap_Keluar::findOrFail($id);
-
-        //delete image
-        Storage::delete('public/rekap_keluars/'. $rekap_keluar->image);
 
         //delete rekap_keluar
         $rekap_keluar->delete();

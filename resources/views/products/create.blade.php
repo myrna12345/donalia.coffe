@@ -19,18 +19,6 @@
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">GAMBAR</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
-                            
-                                <!-- error message untuk image -->
-                                @error('image')
-                                    <div class="alert alert-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-
-                            <div class="form-group mb-3">
                                 <label class="font-weight-bold">NAMA BAHAN</label>
                                 <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title') }}" placeholder="Masukkan Nama Bahan">
                             
@@ -43,11 +31,11 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">DESKRIPSI</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Deskripsi Bahan">{{ old('description') }}</textarea>
+                                <label class="font-weight-bold">KATEGORI</label>
+                                <textarea class="form-control @error('category') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Deskripsi Bahan">{{ old('description') }}</textarea>
                             
                                 <!-- error message untuk description -->
-                                @error('description')
+                                @error('category')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
                                     </div>

@@ -15,7 +15,6 @@ class Rekap_Masuk extends Model
      * @var array
      */
     protected $fillable = [
-        'image',
         'title',
         'description',
         'price',

@@ -14,18 +14,16 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('rekap_masuks.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('rekap_keluars.store') }}" method="POST" enctype="multipart/form-data">
                         
                             @csrf
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">GAMBAR</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
                             
                                 <!-- error message untuk image -->
                                 @error('image')
                                     <div class="alert alert-danger mt-2">
-                                        {{ $message }}
+                                        {{ $message                   }}
                                     </div>
                                 @enderror
                             </div>
@@ -43,7 +41,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">DESKRIPSI</label>
+                                <label class="font-weight-bold">KATEGORI</label>
                                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Deskripsi Bahan">{{ old('description') }}</textarea>
                             
                                 <!-- error message untuk description -->

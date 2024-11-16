@@ -20,8 +20,6 @@
                             @method('PUT')
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">IMAGE</label>
-                                <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
                             
                                 <!-- error message untuk image -->
                                 @error('image')
@@ -44,7 +42,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">DESCRIPTION</label>
+                                <label class="font-weight-bold">KATEGORI</label>
                                 <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Description Product">{{ old('description', $product->description) }}</textarea>
                             
                                 <!-- error message untuk description -->

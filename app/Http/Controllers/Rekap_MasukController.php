@@ -14,12 +14,9 @@ use Illuminate\Http\RedirectResponse;
 //import Http Request
 use Illuminate\Http\Request;
 
-//import Facades Storage
-use Illuminate\Support\Facades\Storage;
-
 class Rekap_MasukController extends Controller
 {
-       /**
+    /**
      * index
      *
      * @return void
@@ -32,7 +29,8 @@ class Rekap_MasukController extends Controller
         //render view with rekap_masuks
         return view('rekap_masuks.index', compact('rekap_masuks'));
     }
-     /**
+
+    /**
      * create
      *
      * @return View
@@ -52,20 +50,14 @@ class Rekap_MasukController extends Controller
     {
         //validate form
         $request->validate([
-            'image'         => 'required|image|mimes:jpeg,jpg,png|max:2048',
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
             'price'         => 'required|numeric',
             'stock'         => 'required|numeric'
         ]);
 
-        //upload image
-        $image = $request->file('image');
-        $image->storeAs('public/rekap_masuks', $image->hashName());
-
         //create rekap_masuk
         Rekap_Masuk::create([
-            'image'         => $image->hashName(),
             'title'         => $request->title,
             'description'   => $request->description,
             'price'         => $request->price,
@@ -75,7 +67,8 @@ class Rekap_MasukController extends Controller
         //redirect to index
         return redirect()->route('rekap_masuks.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
-        /**
+
+    /**
      * show
      *
      * @param  mixed $id
@@ -89,6 +82,7 @@ class Rekap_MasukController extends Controller
         //render view with rekap_masuk
         return view('rekap_masuks.show', compact('rekap_masuk'));
     }
+
     /**
      * edit
      *
@@ -103,7 +97,7 @@ class Rekap_MasukController extends Controller
         //render view with rekap_masuk
         return view('rekap_masuks.edit', compact('rekap_masuk'));
     }
-        
+
     /**
      * update
      *
@@ -115,7 +109,6 @@ class Rekap_MasukController extends Controller
     {
         //validate form
         $request->validate([
-            'image'         => 'image|mimes:jpeg,jpg,png|max:2048',
             'title'         => 'required|min:5',
             'description'   => 'required|min:10',
             'price'         => 'required|numeric',
@@ -125,39 +118,18 @@ class Rekap_MasukController extends Controller
         //get rekap_masuk by ID
         $rekap_masuk = Rekap_Masuk::findOrFail($id);
 
-        //check if image is uploaded
-        if ($request->hasFile('image')) {
-
-            //upload new image
-            $image = $request->file('image');
-            $image->storeAs('public/rekap_masuks', $image->hashName());
-
-            //delete old image
-            Storage::delete('public/rekap_masuks/'.$rekap_masuk->image);
-
-            //update rekap_masuk with new image
-            $rekap_masuk->update([
-                'image'         => $image->hashName(),
-                'title'         => $request->title,
-                'description'   => $request->description,
-                'price'         => $request->price,
-                'stock'         => $request->stock
-            ]);
-
-        } else {
-
-            //update rekap_masuk without image
-            $rekap_masuk->update([
-                'title'         => $request->title,
-                'description'   => $request->description,
-                'price'         => $request->price,
-                'stock'         => $request->stock
-            ]);
-        }
+        //update rekap_masuk
+        $rekap_masuk->update([
+            'title'         => $request->title,
+            'description'   => $request->description,
+            'price'         => $request->price,
+            'stock'         => $request->stock
+        ]);
 
         //redirect to index
         return redirect()->route('rekap_masuks.index')->with(['success' => 'Data Berhasil Diubah!']);
     }
+
     /**
      * destroy
      *
@@ -168,9 +140,6 @@ class Rekap_MasukController extends Controller
     {
         //get rekap_masuk by ID
         $rekap_masuk = Rekap_Masuk::findOrFail($id);
-
-        //delete image
-        Storage::delete('public/rekap_masuks/'. $rekap_masuk->image);
 
         //delete rekap_masuk
         $rekap_masuk->delete();

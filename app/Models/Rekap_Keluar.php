@@ -14,7 +14,6 @@ class Rekap_Keluar extends Model
      * @var array
      */
     protected $fillable = [
-        'image',
         'title',
         'description',
         'price',

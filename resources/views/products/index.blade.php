@@ -10,10 +10,10 @@
     <style>
         body {
             background-image: url('{{ asset("assets/img/background.jpg") }}');
-            background-size: cover; /* Menutupi seluruh layar */
+            background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            background-color: #d3d3d3; /* Tetap menggunakan warna background asli */
+            background-color: #d3d3d3;
             color: black;
             font-family: 'Times New Roman', Times, serif;
         }
@@ -28,12 +28,12 @@
             color: white;
         }
         .btn-custom {
-            background-color: #3a3a3a; /* Warna yang sama dengan tombol "Tambah Produk" */
+            background-color: #3a3a3a;
             color: white !important;
             border: 1px solid #ccc;
         }
         .btn-custom:hover {
-            background-color: #5a5a5a; /* Warna gelap saat hover */
+            background-color: #5a5a5a;
         }
         .alert-custom {
             background-color: white !important;
@@ -74,15 +74,13 @@
         tr:hover {
             background-color: rgba(200, 200, 255, 0.5);
         }
-
-        /* Menyamaratakan warna tombol */
         .btn-custom-view, .btn-custom-edit, .btn-custom-delete {
-            background-color: #3a3a3a; /* Warna yang sama dengan tombol "Tambah Produk" */
+            background-color: #3a3a3a;
             color: white !important;
             border: 1px solid #ccc;
         }
         .btn-custom-view:hover, .btn-custom-edit:hover, .btn-custom-delete:hover {
-            background-color: #5a5a5a; /* Warna gelap saat hover */
+            background-color: #5a5a5a;
         }
     </style>
 </head>
@@ -97,9 +95,17 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="products">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            Stok Bahan
+                        </a>
+                        <a class="nav-link" href="rekap_masuks">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Rekap Masuk
+                        </a>
+                        <a class="nav-link" href="rekap_keluars">
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            Rekap Keluar
                         </a>
                     </div>
                 </div>
@@ -135,8 +141,9 @@
                                 <tr>
                                     <td>{{ $product->id }}</td>
                                     <td>{{ $product->title }}</td>
-                                    <td>{{ $product->category }}</td>
-                                    <td>{{ "Rp " . number_format($product->price,2,',','.') }}</td>
+                                    <!-- Menggunakan strip_tags untuk menghilangkan tag HTML -->
+                                    <td>{{ strip_tags($product->description) }}</td>
+                                    <td>{{ "Rp " . number_format($product->price, 2, ',', '.') }}</td>
                                     <td>{{ $product->stock }}</td>
                                     <td class="text-center">
                                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
