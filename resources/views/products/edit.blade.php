@@ -6,6 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-custom {
+            background-color: #3a3a3a; /* Sama seperti tombol di halaman index */
+            color: white;
+            border: 1px solid #ccc;
+        }
+        .btn-custom:hover {
+            background-color: #5a5a5a;
+        }
+    </style>
 </head>
 <body style="background: lightgray">
 
@@ -20,7 +30,6 @@
                             @method('PUT')
 
                             <div class="form-group mb-3">
-                            
                                 <!-- error message untuk image -->
                                 @error('image')
                                     <div class="alert alert-danger mt-2">
@@ -82,8 +91,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-md btn-primary me-3">UPDATE</button>
-                            <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                            <button type="submit" class="btn btn-md btn-custom me-3">UPDATE</button>
+                            <button type="reset" class="btn btn-md btn-custom">RESET</button>
 
                         </form> 
                     </div>

@@ -6,6 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Products</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-custom {
+            background-color: #3a3a3a; /* Sama seperti tombol di halaman index */
+            color: white;
+            border: 1px solid #ccc;
+        }
+        .btn-custom:hover {
+            background-color: #5a5a5a;
+        }
+    </style>
 </head>
 <body style="background: lightgray">
 
@@ -14,18 +24,23 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <form action="{{ route('rekap_keluars.update', $rekap_masuk->id) }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('rekap_keluars.update', $rekap_keluar->id) }}" method="POST" enctype="multipart/form-data">
                         
                             @csrf
                             @method('PUT')
 
                             <div class="form-group mb-3">
+                                <!-- error message untuk image -->
+                                @error('image')
+                                    <div class="alert alert-danger mt-2">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
 
                             <div class="form-group mb-3">
                                 <label class="font-weight-bold">TITLE</label>
-                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', $rekap_masuk->title) }}" placeholder="Masukkan Judul Product">
+                                <input type="text" class="form-control @error('title') is-invalid @enderror" name="title" value="{{ old('title', $rekap_keluar->title) }}" placeholder="Masukkan Judul Product">
                             
                                 <!-- error message untuk title -->
                                 @error('title')
@@ -36,8 +51,8 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">DESCRIPTION</label>
-                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Description Product">{{ old('description', $rekap_masuk->description) }}</textarea>
+                                <label class="font-weight-bold">KATEGORI</label>
+                                <textarea class="form-control @error('description') is-invalid @enderror" name="description" rows="5" placeholder="Masukkan Description Product">{{ old('description', $rekap_keluar->description) }}</textarea>
                             
                                 <!-- error message untuk description -->
                                 @error('description')
@@ -51,7 +66,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="font-weight-bold">PRICE</label>
-                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price', $rekap_masuk->price) }}" placeholder="Masukkan Harga Product">
+                                        <input type="number" class="form-control @error('price') is-invalid @enderror" name="price" value="{{ old('price', $rekap_keluar->price) }}" placeholder="Masukkan Harga Product">
                                     
                                         <!-- error message untuk price -->
                                         @error('price')
@@ -64,7 +79,7 @@
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
                                         <label class="font-weight-bold">STOCK</label>
-                                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock', $rekap_masuk->stock) }}" placeholder="Masukkan Stock Product">
+                                        <input type="number" class="form-control @error('stock') is-invalid @enderror" name="stock" value="{{ old('stock', $rekap_keluar->stock) }}" placeholder="Masukkan Stock Product">
                                     
                                         <!-- error message untuk stock -->
                                         @error('stock')
@@ -76,8 +91,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-md btn-primary me-3">UPDATE</button>
-                            <button type="reset" class="btn btn-md btn-warning">RESET</button>
+                            <button type="submit" class="btn btn-md btn-custom me-3">UPDATE</button>
+                            <button type="reset" class="btn btn-md btn-custom">RESET</button>
 
                         </form> 
                     </div>
