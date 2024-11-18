@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Stok Bahan</title>
+    <title>Dashboard Rekap Masuk</title>
     <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
     <link href="{{ asset('template/css/styles.css') }}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
@@ -86,7 +86,7 @@
 </head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark sb-topnav">
-        <a class="navbar-brand ps-3" href="#">Stok Bahan</a>
+        <a class="navbar-brand ps-3" href="#">Rekap Masuk</a>
     </nav>
     
     <div id="layoutSidenav">
@@ -94,7 +94,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link" href="products">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Stok Bahan
@@ -120,7 +120,7 @@
             <main>
                 <div class="container-fluid px-4">
                     <div class="title-container">
-                        <h1 class="mt-2 text-center-title"><strong>Stok Bahan Baku Donalia Coffe and Bakery</strong></h1>
+                        <h1 class="mt-2 text-center-title"><strong>Rekap Masuk Bahan Baku Donalia Coffe and Bakery</strong></h1>
                     </div>
 
                     <a href="{{ route('rekap_masuks.create') }}" class="btn btn-md btn-custom mb-3" style="margin-top: 15px;">TAMBAH PRODUK</a>
@@ -170,7 +170,7 @@
             <footer class="py-4 bg-light mt-auto" style="color: black;">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Kelompok 3</div>
+                        <div class="text-muted">Copyright &copy; ciaa </div>
                         <div>
                             <a href="#" style="color: black;">Privacy Policy</a> &middot;
                             <a href="#" style="color: black;">Terms &amp; Conditions</a>

@@ -94,7 +94,7 @@
             <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
                 <div class="sb-sidenav-menu">
                     <div class="nav">
-                        <div class="sb-sidenav-menu-heading">Core</div>
+                        <div class="sb-sidenav-menu-heading">Menu</div>
                         <a class="nav-link" href="products">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                             Stok Bahan
@@ -170,7 +170,7 @@
             <footer class="py-4 bg-light mt-auto" style="color: black;">
                 <div class="container-fluid px-4">
                     <div class="d-flex align-items-center justify-content-between small">
-                        <div class="text-muted">Copyright &copy; Kelompok 3</div>
+                        <div class="text-muted">Copyright &copy; ciaa </div>
                         <div>
                             <a href="#" style="color: black;">Privacy Policy</a> &middot;
                             <a href="#" style="color: black;">Terms &amp; Conditions</a>
