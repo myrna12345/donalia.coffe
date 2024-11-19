@@ -14,21 +14,21 @@
             <div class="col-md-4">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <img src="{{ asset('/storage/rekap_keluars/'.$rekap_masuk->image) }}" class="rounded" style="width: 100%">
+                        <img src="{{ asset('/storage/rekap_keluars/'.$rekap_keluar->image) }}" class="rounded" style="width: 100%">
                     </div>
                 </div>
             </div>
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <h3>{{ $rekap_masuk->title }}</h3>
+                        <h3>{{ $rekap_keluar->title }}</h3>
                         <hr/>
-                        <p>{{ "Rp " . number_format($rekap_masuk->price,2,',','.') }}</p>
+                        <p>{{ "Rp " . number_format($rekap_keluar->price,2,',','.') }}</p>
                         <code>
-                            <p>{!! $rekap_masuk->description !!}</p>
+                            <p>{!! $rekap_keluar->description !!}</p>
                         </code>
                         <hr/>
-                        <p>Stock : {{ $rekap_masuk->stock }}</p>
+                        <p>Stock : {{ $rekap_keluar->stock }}</p>
                     </div>
                 </div>
             </div>
