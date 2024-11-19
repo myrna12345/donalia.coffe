@@ -10,21 +10,21 @@ use Illuminate\Http\RedirectResponse;
 class ProductController extends Controller
 {
     /**
-     * index
+     * Display a listing of the products.
      *
-     * @return void
+     * @return View
      */
-    public function index() : View
+    public function index(): View
     {
-        //get all products
+        // Get all products with pagination
         $products = Product::latest()->paginate(10);
 
-        //render view with products
+        // Render view with products
         return view('products.index', compact('products'));
     }
 
     /**
-     * create
+     * Show the form for creating a new product.
      *
      * @return View
      */
@@ -34,110 +34,94 @@ class ProductController extends Controller
     }
 
     /**
-     * store
+     * Store a newly created product in storage.
      *
-     * @param  mixed $request
+     * @param  Request  $request
      * @return RedirectResponse
      */
     public function store(Request $request): RedirectResponse
     {
-        //validate form
+        // Validate form input
         $request->validate([
-            'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
-            'price'         => 'required|numeric',
-            'stock'         => 'required|numeric'
+            'nama_bahan'             => 'required|min:5',
+            'kategori'               => 'required|min:10',
+            'harga'                  => 'required|numeric',
+            'jumlah'                 => 'required|numeric',
+            'tanggal_masuk'          => 'required|date',
+            'tanggal_kadaluarsa'     => 'required|date',
+            'bahan_sering_digunakan' => 'required|min:10',
+            'bahan_jarang_digunakan' => 'required|min:10'
         ]);
 
-        //create product
-        Product::create([
-            'title'         => $request->title,
-            'description'   => $request->description,
-            'price'         => $request->price,
-            'stock'         => $request->stock
-        ]);
+        // Create product
+        Product::create($request->all());
 
-        //redirect to index
-        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        // Redirect to index with success message
+        return redirect()->route('products.index')->with('success', 'Data Berhasil Disimpan!');
     }
-    
+
     /**
-     * show
+     * Display the specified product.
      *
-     * @param  mixed $id
+     * @param  string  $id
      * @return View
      */
     public function show(string $id): View
     {
-        //get product by ID
         $product = Product::findOrFail($id);
-
-        //render view with product
         return view('products.show', compact('product'));
     }
-    
+
     /**
-     * edit
+     * Show the form for editing the specified product.
      *
-     * @param  mixed $id
+     * @param  string  $id
      * @return View
      */
     public function edit(string $id): View
     {
-        //get product by ID
         $product = Product::findOrFail($id);
-
-        //render view with product
         return view('products.edit', compact('product'));
     }
-        
+
     /**
-     * update
+     * Update the specified product in storage.
      *
-     * @param  mixed $request
-     * @param  mixed $id
+     * @param  Request  $request
+     * @param  string  $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, string $id): RedirectResponse
     {
-        //validate form
+        // Validate form input
         $request->validate([
-            'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
-            'price'         => 'required|numeric',
-            'stock'         => 'required|numeric'
+            'nama_bahan'             => 'required|min:5',
+            'kategori'               => 'required|min:10',
+            'harga'                  => 'required|numeric',
+            'jumlah'                 => 'required|numeric',
+            'tanggal_masuk'          => 'required|date',
+            'tanggal_kadaluarsa'     => 'required|date',
+            'bahan_sering_digunakan' => 'required|min:10',
+            'bahan_jarang_digunakan' => 'required|min:10'
         ]);
 
-        //get product by ID
         $product = Product::findOrFail($id);
+        $product->update($request->all());
 
-        //update product
-        $product->update([
-            'title'         => $request->title,
-            'description'   => $request->description,
-            'price'         => $request->price,
-            'stock'         => $request->stock
-        ]);
-
-        //redirect to index
-        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Diubah!']);
+        return redirect()->route('products.index')->with('success', 'Data Berhasil Diubah!');
     }
-    
+
     /**
-     * destroy
+     * Remove the specified product from storage.
      *
-     * @param  mixed $id
+     * @param  string  $id
      * @return RedirectResponse
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(string $id): RedirectResponse
     {
-        //get product by ID
         $product = Product::findOrFail($id);
-
-        //delete product
         $product->delete();
 
-        //redirect to index
-        return redirect()->route('products.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('products.index')->with('success', 'Data Berhasil Dihapus!');
     }
 }

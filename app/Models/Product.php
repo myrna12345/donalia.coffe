@@ -10,14 +10,18 @@ class Product extends Model
     use HasFactory;
 
     /**
-     * fillable
+     * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'title',
-        'description',
-        'price',
-        'stock',
+        'nama_bahan',             
+        'kategori',               
+        'harga',                  
+        'jumlah',                 
+        'tanggal_masuk',          
+        'tanggal_kadaluarsa',     
+        'bahan_sering_digunakan', 
+        'bahan_jarang_digunakan',
     ];
 }
