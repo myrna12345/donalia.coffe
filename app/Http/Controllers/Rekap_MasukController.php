@@ -50,10 +50,9 @@ class Rekap_MasukController extends Controller
     {
         //validate form
         $request->validate([
-            'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
-            'price'         => 'required|numeric',
-            'stock'         => 'required|numeric'
+            'nama_bahan'    => 'required|string|min:3',
+            'tanggal_masuk' => 'required|date',
+            'jumlah_masuk'  => 'required|numeric|min:1',
         ]);
 
         //create rekap_masuk
