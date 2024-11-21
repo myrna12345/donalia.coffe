@@ -1,34 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Show Products - SantriKoding.com</title>
+    <title>Detail Rekap Masuk - Donalia Coffee</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .btn-secondary {
+            text-transform: uppercase; /* Mengubah teks tombol menjadi huruf kapital */
+        }
+    </style>
 </head>
 <body style="background: lightgray">
 
     <div class="container mt-5 mb-5">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <img src="{{ asset('/storage/rekap_masuks/'.$rekap_masuk->image) }}" class="rounded" style="width: 100%">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="card border-0 shadow-sm rounded">
-                    <div class="card-body">
-                        <h3>{{ $rekap_masuk->title }}</h3>
+                        <h3>Detail Rekap Masuk: {{ $rekap_masuk->nama_bahan }}</h3>
                         <hr/>
-                        <p>{{ "Rp " . number_format($rekap_masuk->price,2,',','.') }}</p>
-                        <code>
-                            <p>{!! $rekap_masuk->description !!}</p>
-                        </code>
-                        <hr/>
-                        <p>Stock : {{ $rekap_masuk->stock }}</p>
+                        <p><strong>Jenis Transaksi:</strong> {{ $rekap_masuk->jenis_transaksi }}</p>
+                        <p><strong>Tanggal Masuk:</strong> {{ $rekap_masuk->tanggal_masuk }}</p>
+                        <p><strong>Jumlah Masuk:</strong> {{ $rekap_masuk->jumlah_masuk }}</p>
+                        <a href="/rekap_masuks" class="btn btn-secondary mt-3">KEMBALI</a>
                     </div>
                 </div>
             </div>

@@ -8,17 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 class Rekap_Masuk extends Model
 {
     use HasFactory;
-    
+
     /**
-     * fillable
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'rekap_masuks';
+
+    /**
+     * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'nama_bahan', 
-        'tanggal_masuk', 
-        'jumlah_masuk', 
-        'menu'
+        'jenis_transaksi',
+        'tanggal_masuk',
+        'jumlah_masuk',
     ];
 }
-

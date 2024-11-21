@@ -10,6 +10,9 @@
         body {
             font-family: 'Times New Roman', Times, serif;
         }
+        .btn-secondary {
+            text-transform: uppercase; /* Mengubah teks tombol menjadi huruf kapital */
+        }
     </style>
 </head>
 <body style="background: lightgray">
@@ -26,7 +29,7 @@
                         <p><strong>Harga:</strong> {{ "Rp " . number_format($product->harga,2,',','.') }}</p>
                         <p><strong>Jumlah:</strong> {{ $product->jumlah }}</p>
                         <p><strong>Tanggal Masuk:</strong> {{ $product->tanggal_masuk }}</p>
-                        <p><strong>Tanggal Kadaluwarsa:</strong> {{ $product->tanggal_kadaluarsa }}</p>
+                        <p><strong>Tanggal Kadaluarsa:</strong> {{ $product->tanggal_kadaluarsa }}</p>
                         <p><strong>Bahan Sering Digunakan:</strong> {{ $product->bahan_sering_digunakan }}</p>
                         <p><strong>Bahan Jarang Digunakan:</strong> {{ $product->bahan_jarang_digunakan }}</p>
                         <a href="/products" class="btn btn-secondary mt-3">Kembali</a>

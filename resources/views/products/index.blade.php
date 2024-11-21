@@ -8,13 +8,12 @@
     <link href="{{ asset('template/css/styles.css') }}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
-        /* Styles for the dashboard */
         body, table, h1, h2, h3, h4, h5, h6, p, a, div, span {
             font-family: 'Times New Roman', Times, serif;
         }
         .btn-custom, .btn-custom-view, .btn-custom-edit, .btn-custom-delete {
-            background-color: #495057; /* Warna abu-abu tua */
-            color: #ffffff; /* Warna teks putih */
+            background-color: #495057;
+            color: #ffffff;
             border: none;
             padding: 8px 15px;
             border-radius: 5px;
@@ -24,15 +23,20 @@
             margin: 2px;
         }
         .btn-custom:hover, .btn-custom-view:hover, .btn-custom-edit:hover, .btn-custom-delete:hover {
-            background-color: #343a40; /* Sedikit lebih gelap untuk efek hover */
-            color: #f8f9fa; /* Warna teks putih lebih terang saat hover */
+            background-color: #343a40;
+            color: #f8f9fa;
         }
         table th, table td {
-            text-align: center; /* Center align text in table cells */
-            vertical-align: middle; /* Center align vertically */
+            text-align: center;
+            vertical-align: middle;
+        }
+        /* Membatasi tinggi tabel agar bisa di-scroll */
+        .table-wrapper {
+            max-height: 400px; /* Sesuaikan tinggi dengan kebutuhan */
+            overflow-y: auto;
         }
     </style>
-</head>p
+</head>
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark sb-topnav">
         <a class="navbar-brand ps-3" href="#">Stok Bahan</a>
@@ -76,51 +80,53 @@
                     <!-- Add Product Button -->
                     <a href="{{ route('products.create') }}" class="btn btn-md btn-custom mb-3" style="margin-top: 15px;">TAMBAH PRODUK</a>
 
-                    <!-- Table -->
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Id</th>
-                                <th scope="col">Nama Bahan</th>
-                                <th scope="col">Kategori</th>
-                                <th scope="col">Harga</th>
-                                <th scope="col">Jumlah</th>
-                                <th scope="col">Tanggal Masuk</th>
-                                <th scope="col">Tanggal Kadaluarsa</th>
-                                <th scope="col">Bahan Sering Digunakan</th>
-                                <th scope="col">Bahan Jarang Digunakan</th>
-                                <th scope="col" style="width: 20%">Menu</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($products as $product)
+                    <!-- Table Wrapper -->
+                    <div class="table-wrapper">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td>{{ $product->id }}</td>
-                                    <td>{{ $product->nama_bahan }}</td>
-                                    <td>{{ $product->kategori }}</td>
-                                    <td>{{ "Rp " . number_format($product->harga, 2, ',', '.') }}</td>
-                                    <td>{{ $product->jumlah }}</td>
-                                    <td>{{ $product->tanggal_masuk }}</td>
-                                    <td>{{ $product->tanggal_kadaluarsa }}</td>
-                                    <td>{{ $product->bahan_sering_digunakan }}</td>
-                                    <td>{{ $product->bahan_jarang_digunakan }}</td>
-                                    <td class="text-center">
-                                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
-                                            <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-custom-view">LIHAT</a>
-                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-custom-edit">EDIT</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-custom-delete">HAPUS</button>
-                                        </form>
-                                    </td>
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Nama Bahan</th>
+                                    <th scope="col">Kategori</th>
+                                    <th scope="col">Harga</th>
+                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Tanggal Masuk</th>
+                                    <th scope="col">Tanggal Kadaluarsa</th>
+                                    <th scope="col">Bahan Sering Digunakan</th>
+                                    <th scope="col">Bahan Jarang Digunakan</th>
+                                    <th scope="col" style="width: 20%">Menu</th>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="10" class="text-center alert alert-custom">Data Produk belum Tersedia.</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @forelse ($products as $product)
+                                    <tr>
+                                        <td>{{ $product->id }}</td>
+                                        <td>{{ $product->nama_bahan }}</td>
+                                        <td>{{ $product->kategori }}</td>
+                                        <td>{{ "Rp " . number_format($product->harga, 2, ',', '.') }}</td>
+                                        <td>{{ $product->jumlah }}</td>
+                                        <td>{{ $product->tanggal_masuk }}</td>
+                                        <td>{{ $product->tanggal_kadaluarsa }}</td>
+                                        <td>{{ $product->bahan_sering_digunakan }}</td>
+                                        <td>{{ $product->bahan_jarang_digunakan }}</td>
+                                        <td class="text-center">
+                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('products.destroy', $product->id) }}" method="POST">
+                                                <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-custom-view">LIHAT</a>
+                                                <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-custom-edit">EDIT</a>
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-sm btn-custom-delete">HAPUS</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="10" class="text-center alert alert-custom">Data Produk belum Tersedia.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
 
                     {{ $products->links() }}
                 </div>

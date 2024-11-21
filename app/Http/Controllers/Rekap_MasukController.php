@@ -2,148 +2,104 @@
 
 namespace App\Http\Controllers;
 
-//import model rekap_masuk
 use App\Models\Rekap_Masuk;
-
-//import return type View
-use Illuminate\View\View;
-
-//import return type redirectResponse
-use Illuminate\Http\RedirectResponse;
-
-//import Http Request
 use Illuminate\Http\Request;
 
 class Rekap_MasukController extends Controller
 {
     /**
-     * index
+     * Menampilkan daftar rekap masuk dengan pagination.
      *
-     * @return void
+     * @return \Illuminate\View\View
      */
-    public function index() : View
+    public function index()
     {
-        //get all rekap_masuks
-        $rekap_masuks = Rekap_Masuk::latest()->paginate(10);
-
-        //render view with rekap_masuks
-        return view('rekap_masuks.index', compact('rekap_masuks'));
+        $rekapMasuks = Rekap_Masuk::latest()->paginate(10);
+        return view('rekap_masuks.index', compact('rekapMasuks'));
     }
 
     /**
-     * create
+     * Menampilkan detail rekap masuk.
      *
-     * @return View
+     * @param  \App\Models\Rekap_Masuk  $rekap_masuk
+     * @return \Illuminate\View\View
      */
-    public function create(): View
+    public function show(Rekap_Masuk $rekap_masuk)
+    {
+        // Menampilkan detail data rekap masuk
+        return view('rekap_masuks.show', compact('rekap_masuk'));
+    }
+
+    /**
+     * Menampilkan form untuk mengedit data yang ada.
+     *
+     * @param  \App\Models\Rekap_Masuk  $rekap_masuk
+     * @return \Illuminate\View\View
+     */
+    public function edit(Rekap_Masuk $rekap_masuk)
+    {
+        return view('rekap_masuks.edit', compact('rekap_masuk'));
+    }
+
+    /**
+     * Memperbarui data yang ada ke dalam database.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Rekap_Masuk  $rekap_masuk
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function update(Request $request, Rekap_Masuk $rekap_masuk)
+    {
+        $validated = $request->validate([
+            'jenis_transaksi' => 'required|string|max:255',
+            'tanggal_masuk' => 'required|date',
+            'jumlah_masuk' => 'required|numeric|min:0',
+        ]);
+
+        $rekap_masuk->update($validated);
+
+        return redirect()->route('rekap_masuks.index')->with('success', 'Data berhasil diperbarui!');
+    }
+
+    /**
+     * Menampilkan form untuk membuat data baru.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function create()
     {
         return view('rekap_masuks.create');
     }
 
     /**
-     * store
+     * Menyimpan data baru yang dikirimkan dari form ke dalam database.
      *
-     * @param  mixed $request
-     * @return RedirectResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-        //validate form
-        $request->validate([
-            'nama_bahan'    => 'required|string|min:3',
+        $validated = $request->validate([
+            'jenis_transaksi' => 'required|string|max:255',
             'tanggal_masuk' => 'required|date',
-            'jumlah_masuk'  => 'required|numeric|min:1',
+            'jumlah_masuk' => 'required|numeric|min:0',
         ]);
 
-        //create rekap_masuk
-        Rekap_Masuk::create([
-            'title'         => $request->title,
-            'description'   => $request->description,
-            'price'         => $request->price,
-            'stock'         => $request->stock
-        ]);
+        Rekap_Masuk::create($validated);
 
-        //redirect to index
-        return redirect()->route('rekap_masuks.index')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('rekap_masuks.index')->with('success', 'Data berhasil ditambahkan!');
     }
 
     /**
-     * show
+     * Menghapus data yang dipilih.
      *
-     * @param  mixed $id
-     * @return View
+     * @param  \App\Models\Rekap_Masuk  $rekap_masuk
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function show(string $id): View
+    public function destroy(Rekap_Masuk $rekap_masuk)
     {
-        //get rekap_masuk by ID
-        $rekap_masuk = Rekap_Masuk::findOrFail($id);
-
-        //render view with rekap_masuk
-        return view('rekap_masuks.show', compact('rekap_masuk'));
-    }
-
-    /**
-     * edit
-     *
-     * @param  mixed $id
-     * @return View
-     */
-    public function edit(string $id): View
-    {
-        //get rekap_masuk by ID
-        $rekap_masuk = Rekap_Masuk::findOrFail($id);
-
-        //render view with rekap_masuk
-        return view('rekap_masuks.edit', compact('rekap_masuk'));
-    }
-
-    /**
-     * update
-     *
-     * @param  mixed $request
-     * @param  mixed $id
-     * @return RedirectResponse
-     */
-    public function update(Request $request, $id): RedirectResponse
-    {
-        //validate form
-        $request->validate([
-            'title'         => 'required|min:5',
-            'description'   => 'required|min:10',
-            'price'         => 'required|numeric',
-            'stock'         => 'required|numeric'
-        ]);
-
-        //get rekap_masuk by ID
-        $rekap_masuk = Rekap_Masuk::findOrFail($id);
-
-        //update rekap_masuk
-        $rekap_masuk->update([
-            'title'         => $request->title,
-            'description'   => $request->description,
-            'price'         => $request->price,
-            'stock'         => $request->stock
-        ]);
-
-        //redirect to index
-        return redirect()->route('rekap_masuks.index')->with(['success' => 'Data Berhasil Diubah!']);
-    }
-
-    /**
-     * destroy
-     *
-     * @param  mixed $id
-     * @return RedirectResponse
-     */
-    public function destroy($id): RedirectResponse
-    {
-        //get rekap_masuk by ID
-        $rekap_masuk = Rekap_Masuk::findOrFail($id);
-
-        //delete rekap_masuk
         $rekap_masuk->delete();
 
-        //redirect to index
-        return redirect()->route('rekap_masuks.index')->with(['success' => 'Data Berhasil Dihapus!']);
+        return redirect()->route('rekap_masuks.index')->with('success', 'Data berhasil dihapus!');
     }
 }

@@ -81,7 +81,7 @@
         <div id="layoutSidenav_content">
             <main>
                 <div class="container-fluid px-4">
-                    <h1 class="mt-4">Rekap Masuk Bahan Baku Donalia Coffee and Bakery</h1>
+                    <h1 class="mt-4"><strong>Rekap Masuk Bahan Baku Donalia Coffee and Bakery</strong></h1>
                     <div class="btn-container">
                         <a href="{{ route('rekap_masuks.create') }}" class="btn btn-md btn-custom">TAMBAH PRODUK</a>
                     </div>
@@ -89,43 +89,49 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Nama Bahan</th>
+                                <th>Jenis Transaksi</th>
                                 <th>Tanggal Masuk</th>
                                 <th>Jumlah Masuk</th>
                                 <th>Menu</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($rekap_masuks as $rekap_masuk)
-                                <tr>
-                                    <td>{{ $rekap_masuk->id }}</td>
-                                    <td>{{ $rekap_masuk->nama_bahan }}</td>
-                                    <td>{{ $rekap_masuk->tanggal_masuk }}</td>
-                                    <td>{{ $rekap_masuk->jumlah_masuk }}</td>
-                                    <td>
-                                        <form onsubmit="return confirm('Apakah Anda yakin?');" action="{{ route('rekap_masuks.destroy', $rekap_masuk->id) }}" method="POST">
-                                            <a href="{{ route('rekap_masuks.show', $rekap_masuk->id) }}" class="btn btn-sm btn-custom">Lihat</a>
-                                            <a href="{{ route('rekap_masuks.edit', $rekap_masuk->id) }}" class="btn btn-sm btn-custom">Edit</a>
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-sm btn-custom">Hapus</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">Data Produk belum tersedia.</td>
-                                </tr>
-                            @endforelse
+                        @forelse ($rekapMasuks as $rekap_masuk)
+                            <tr>
+                                <td>{{ $rekap_masuk->id }}</td>
+                                <td>{{ $rekap_masuk->jenis_transaksi }}</td>
+                                <td>{{ $rekap_masuk->tanggal_masuk }}</td>
+                                <td>{{ $rekap_masuk->jumlah_masuk }}</td>
+                                <td>
+                                    <form onsubmit="return confirm('Apakah Anda yakin?');" action="{{ route('rekap_masuks.destroy', $rekap_masuk->id) }}" method="POST">
+                                        <a href="{{ route('rekap_masuks.show', $rekap_masuk->id) }}" class="btn btn-sm btn-custom">Lihat</a>
+                                        <a href="{{ route('rekap_masuks.edit', $rekap_masuk->id) }}" class="btn btn-sm btn-custom">Edit</a>
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-custom">Hapus</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center">Data Rekap Masuk belum tersedia.</td>
+                            </tr>
+                        @endforelse
+
                         </tbody>
                     </table>
-                    {{ $rekap_masuks->links() }}
+                    {{ $rekapMasuks->links() }}
+
                 </div>
             </main>
-            <footer class="py-4">
+            <footer class="py-4 bg-light mt-auto" style="color: black;">
                 <div class="container-fluid px-4">
-                    <div class="d-flex justify-content-center">
-                        <div class="text-muted">&copy; 2024 Donalia Coffee</div>
+                    <div class="d-flex align-items-center justify-content-between small">
+                        <div class="text-muted">Copyright &copy; ciaa</div>
+                        <div>
+                            <a href="#" style="color: black;">Privacy Policy</a> &middot;
+                            <a href="#" style="color: black;">Terms &amp; Conditions</a>
+                        </div>
                     </div>
                 </div>
             </footer>

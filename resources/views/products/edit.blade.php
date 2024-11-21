@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Edit Produk</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            font-family: 'Times New Roman', Times, serif; /* Mengatur font halaman menjadi Times New Roman */
+            background: lightgray;
+        }
         .btn-custom {
-            background-color: #495057; /* Warna abu-abu tua yang sama dengan halaman index */
+            background-color: #495057; /* Warna abu-abu tua */
             color: white;
             border: none;
             padding: 8px 15px;
@@ -24,7 +27,7 @@
         }
     </style>
 </head>
-<body style="background: lightgray">
+<body>
 
     <div class="container mt-5 mb-5">
         <div class="row">
@@ -49,7 +52,6 @@
                                 <label class="font-weight-bold">Nama Bahan</label>
                                 <input type="text" class="form-control @error('nama_bahan') is-invalid @enderror" name="nama_bahan" value="{{ old('nama_bahan', $product->nama_bahan) }}" placeholder="Masukkan Nama Bahan">
                             
-
                                 @error('nama_bahan')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -61,7 +63,6 @@
                                 <label class="font-weight-bold">Kategori</label>
                                 <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" value="{{ old('kategori', $product->kategori) }}" placeholder="Masukkan Kategori Bahan">
                             
-
                                 @error('kategori')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -73,7 +74,6 @@
                                 <label class="font-weight-bold">Tanggal Masuk</label>
                                 <input type="date" class="form-control @error('tanggal_masuk') is-invalid @enderror" name="tanggal_masuk" value="{{ old('tanggal_masuk', $product->tanggal_masuk) }}">
                             
-
                                 @error('tanggal_masuk')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -85,7 +85,6 @@
                                 <label class="font-weight-bold">Tanggal Kadaluarsa</label>
                                 <input type="date" class="form-control @error('tanggal_kadaluarsa') is-invalid @enderror" name="tanggal_kadaluarsa" value="{{ old('tanggal_kadaluarsa', $product->tanggal_kadaluarsa) }}">
                             
-
                                 @error('tanggal_kadaluarsa')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -97,7 +96,6 @@
                                 <label class="font-weight-bold">Bahan Sering Digunakan</label>
                                 <input type="text" class="form-control @error('bahan_sering_digunakan') is-invalid @enderror" name="bahan_sering_digunakan" value="{{ old('bahan_sering_digunakan', $product->bahan_sering_digunakan) }}" placeholder="Masukkan Bahan Sering Digunakan">
                             
-
                                 @error('bahan_sering_digunakan')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -109,7 +107,6 @@
                                 <label class="font-weight-bold">Bahan Jarang Digunakan</label>
                                 <input type="text" class="form-control @error('bahan_jarang_digunakan') is-invalid @enderror" name="bahan_jarang_digunakan" value="{{ old('bahan_jarang_digunakan', $product->bahan_jarang_digunakan) }}" placeholder="Masukkan Bahan Jarang Digunakan">
                             
-
                                 @error('bahan_jarang_digunakan')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -144,8 +141,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-md btn-custom me-3">UPDATE</button>
-                            <button type="reset" class="btn btn-md btn-custom">RESET</button>
+                            <button type="submit" class="btn btn-md btn-custom">PERBARUI</button>
+                            <button type="reset" class="btn btn-md btn-custom">ATUR ULANG</button>
 
                         </form> 
                     </div>
