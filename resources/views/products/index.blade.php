@@ -32,7 +32,7 @@
             vertical-align: middle; /* Center align vertically */
         }
     </style>
-</head>
+</head>p
 <body class="sb-nav-fixed">
     <nav class="sb-topnav navbar navbar-expand navbar-dark sb-topnav">
         <a class="navbar-brand ps-3" href="#">Stok Bahan</a>

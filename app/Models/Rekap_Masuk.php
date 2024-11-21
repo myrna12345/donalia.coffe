@@ -15,9 +15,10 @@ class Rekap_Masuk extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'description',
-        'price',
-        'stock',
+        'nama_bahan', 
+        'tanggal_masuk', 
+        'jumlah_masuk', 
+        'menu'
     ];
 }
+
