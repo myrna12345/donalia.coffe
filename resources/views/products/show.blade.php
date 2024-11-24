@@ -10,8 +10,20 @@
         body {
             font-family: 'Times New Roman', Times, serif;
         }
-        .btn-secondary {
+        .btn-custom {
+            background-color: #495057; /* Warna abu-abu tua */
+            color: white; /* Teks berwarna putih */
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
             text-transform: uppercase; /* Mengubah teks tombol menjadi huruf kapital */
+            text-decoration: none;
+            display: inline-block;
+            margin: 2px;
+        }
+        .btn-custom:hover {
+            background-color: #343a40; /* Warna sedikit lebih gelap saat hover */
+            color: #f8f9fa; /* Teks lebih terang */
         }
     </style>
 </head>
@@ -32,7 +44,7 @@
                         <p><strong>Tanggal Kadaluarsa:</strong> {{ $product->tanggal_kadaluarsa }}</p>
                         <p><strong>Bahan Sering Digunakan:</strong> {{ $product->bahan_sering_digunakan }}</p>
                         <p><strong>Bahan Jarang Digunakan:</strong> {{ $product->bahan_jarang_digunakan }}</p>
-                        <a href="/products" class="btn btn-secondary mt-3">Kembali</a>
+                        <a href="/products" class="btn btn-custom mt-3">Kembali</a>
                     </div>
                 </div>
             </div>
