@@ -37,6 +37,7 @@
 
         h1 {
             font-size: 1.5rem; /* Ukuran font judul lebih kecil seperti halaman create */
+            font-weight: bold; /* Membuat judul menjadi tebal */
         }
     </style>
 </head>
@@ -46,6 +47,9 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
+                        <!-- Title with bold text -->
+                        <h1 class="text-center">Edit Data Rekap Masuk</h1>
+                        
                         <form action="{{ route('rekap_masuks.update', $rekap_masuk->id) }}" method="POST">
                             @csrf
                             @method('PUT')

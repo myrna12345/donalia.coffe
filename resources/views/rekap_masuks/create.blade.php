@@ -36,7 +36,8 @@
         }
 
         h1 {
-            font-size: 1.5rem; /* Ukuran font judul lebih kecil seperti halaman edit */
+            font-size: 1.5rem; /* Ukuran font judul disamakan dengan halaman sebelumnya */
+            font-weight: bold; /* Menebalkan teks judul */
         }
     </style>
 </head>
