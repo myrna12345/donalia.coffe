@@ -25,6 +25,11 @@
             background-color: #343a40; /* Sedikit lebih gelap untuk efek hover */
             color: #f8f9fa; /* Warna teks putih lebih terang saat hover */
         }
+        /* Styling untuk judul dengan ukuran sama dengan halaman kedua */
+        h1 {
+            font-size: 1.5rem; /* Ukuran font judul disamakan dengan halaman kedua */
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -34,6 +39,8 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
+                        <!-- Menambahkan Judul Edit Stok Bahan dengan ukuran yang disesuaikan -->
+                        <h1 class="text-center mb-4">Edit Stok Bahan</h1>
                         <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         
                             @csrf
@@ -141,8 +148,8 @@
                                 </div>
                             </div>
 
-                            <button type="submit" class="btn btn-md btn-custom">PERBARUI</button>
-                            <button type="reset" class="btn btn-md btn-custom">ATUR ULANG</button>
+                            <button type="submit" class="btn btn-md btn-custom me-1">PERBARUI</button>
+                            <button type="reset" class="btn btn-md btn-custom ms-1">ATUR ULANG</button>
 
                         </form> 
                     </div>
