@@ -8,32 +8,71 @@
     <link href="{{ asset('template/css/styles.css') }}" rel="stylesheet" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     <style>
-        body, table, h1, h2, h3, h4, h5, h6, p, a, div, span {
+        body {
+            background-image: url('{{ asset("assets/img/background.jpg") }}');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #d3d3d3;
+            color: black;
             font-family: 'Times New Roman', Times, serif;
         }
+        .sb-sidenav, .sb-topnav {
+            background-color: #3a3a3a;
+        }
+        .sb-sidenav .sb-sidenav-menu-heading,
+        .sb-sidenav .nav-link,
+        .sb-sidenav-footer,
+        .sb-topnav .navbar-brand,
+        .sb-topnav .nav-link {
+            color: white;
+        }
         .btn-custom, .btn-custom-view, .btn-custom-edit, .btn-custom-delete {
-            background-color: #495057;
-            color: #ffffff;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            text-transform: uppercase;
-            text-decoration: none;
-            display: inline-block;
-            margin: 2px;
+            background-color: #3a3a3a;
+            color: white !important;
+            border: 1px solid #ccc;
         }
         .btn-custom:hover, .btn-custom-view:hover, .btn-custom-edit:hover, .btn-custom-delete:hover {
-            background-color: #343a40;
-            color: #f8f9fa;
+            background-color: #5a5a5a;
         }
-        table th, table td {
+        .alert-custom {
+            background-color: white !important;
+            color: black !important;
+            border: 1px solid #ccc;
+        }
+        .title-container {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 5px;
             text-align: center;
-            vertical-align: middle;
+            margin-bottom: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
-        /* Membatasi tinggi tabel agar bisa di-scroll */
-        .table-wrapper {
-            max-height: 400px; /* Sesuaikan tinggi dengan kebutuhan */
-            overflow-y: auto;
+        .text-center-title {
+            color: black;
+            font-size: 18px;
+            margin: 0;
+        }
+        table {
+            background-color: rgba(255, 255, 255, 0.8);
+            border-collapse: collapse;
+            width: 100%;
+            color: black;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: center;
+            color: black;
+        }
+        th {
+            background-color: #007bff;
+        }
+        tr:nth-child(even) {
+            background-color: rgba(245, 245, 245, 0.9);
+        }
+        tr:hover {
+            background-color: rgba(200, 200, 255, 0.5);
         }
     </style>
 </head>
@@ -73,7 +112,7 @@
             <main>
                 <div class="container-fluid px-4">
                     <!-- Title Section -->
-                    <div class="title-container" style="text-align: center;">
+                    <div class="title-container">
                         <h1 class="mt-2 text-center-title"><strong>Stok Bahan Baku Donalia Coffee and Bakery</strong></h1>
                     </div>
 

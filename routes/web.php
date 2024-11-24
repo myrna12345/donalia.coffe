@@ -15,7 +15,3 @@ Route::resource('/rekap_masuks', \App\Http\Controllers\Rekap_MasukController::cl
 //route resource for products
 Route::resource('/rekap_keluars', \App\Http\Controllers\Rekap_KeluarController::class);
 
-// Register Routes
-Route::get('/register', [\App\Http\Controllers\RegisterController::class, 'index'])->name('register.index');
-Route::post('/register', [\App\Http\Controllers\RegisterController::class, 'store'])->name('register.store');
-
