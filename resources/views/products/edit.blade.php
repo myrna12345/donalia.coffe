@@ -25,10 +25,14 @@
             background-color: #343a40; /* Sedikit lebih gelap untuk efek hover */
             color: #f8f9fa; /* Warna teks putih lebih terang saat hover */
         }
-        /* Styling untuk judul dengan ukuran sama dengan halaman kedua */
+        /* Styling untuk judul */
         h1 {
-            font-size: 1.5rem; /* Ukuran font judul disamakan dengan halaman kedua */
+            font-size: 1.5rem; /* Ukuran font judul */
             font-weight: bold;
+        }
+        /* Styling untuk label */
+        label {
+            font-weight: bold; /* Membuat teks pada label menjadi tebal */
         }
     </style>
 </head>
@@ -39,7 +43,7 @@
             <div class="col-md-12">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <!-- Menambahkan Judul Edit Stok Bahan dengan ukuran yang disesuaikan -->
+                        <!-- Judul Halaman -->
                         <h1 class="text-center mb-4">Edit Stok Bahan</h1>
                         <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                         
@@ -47,7 +51,7 @@
                             @method('PUT')
 
                             <div class="form-group mb-3">
-                                <!-- error message untuk image -->
+                                <!-- Pesan error untuk image -->
                                 @error('image')
                                     <div class="alert alert-danger mt-2">
                                         {{ $message }}
@@ -56,7 +60,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">Nama Bahan</label>
+                                <label>Nama Bahan</label>
                                 <input type="text" class="form-control @error('nama_bahan') is-invalid @enderror" name="nama_bahan" value="{{ old('nama_bahan', $product->nama_bahan) }}" placeholder="Masukkan Nama Bahan">
                             
                                 @error('nama_bahan')
@@ -67,7 +71,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">Kategori</label>
+                                <label>Kategori</label>
                                 <input type="text" class="form-control @error('kategori') is-invalid @enderror" name="kategori" value="{{ old('kategori', $product->kategori) }}" placeholder="Masukkan Kategori Bahan">
                             
                                 @error('kategori')
@@ -78,7 +82,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">Tanggal Masuk</label>
+                                <label>Tanggal Masuk</label>
                                 <input type="date" class="form-control @error('tanggal_masuk') is-invalid @enderror" name="tanggal_masuk" value="{{ old('tanggal_masuk', $product->tanggal_masuk) }}">
                             
                                 @error('tanggal_masuk')
@@ -89,7 +93,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">Tanggal Kadaluarsa</label>
+                                <label>Tanggal Kadaluarsa</label>
                                 <input type="date" class="form-control @error('tanggal_kadaluarsa') is-invalid @enderror" name="tanggal_kadaluarsa" value="{{ old('tanggal_kadaluarsa', $product->tanggal_kadaluarsa) }}">
                             
                                 @error('tanggal_kadaluarsa')
@@ -100,7 +104,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">Bahan Sering Digunakan</label>
+                                <label>Bahan Sering Digunakan</label>
                                 <input type="text" class="form-control @error('bahan_sering_digunakan') is-invalid @enderror" name="bahan_sering_digunakan" value="{{ old('bahan_sering_digunakan', $product->bahan_sering_digunakan) }}" placeholder="Masukkan Bahan Sering Digunakan">
                             
                                 @error('bahan_sering_digunakan')
@@ -111,7 +115,7 @@
                             </div>
 
                             <div class="form-group mb-3">
-                                <label class="font-weight-bold">Bahan Jarang Digunakan</label>
+                                <label>Bahan Jarang Digunakan</label>
                                 <input type="text" class="form-control @error('bahan_jarang_digunakan') is-invalid @enderror" name="bahan_jarang_digunakan" value="{{ old('bahan_jarang_digunakan', $product->bahan_jarang_digunakan) }}" placeholder="Masukkan Bahan Jarang Digunakan">
                             
                                 @error('bahan_jarang_digunakan')
@@ -124,7 +128,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label class="font-weight-bold">Harga</label>
+                                        <label>Harga</label>
                                         <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga" value="{{ old('harga', $product->harga) }}" placeholder="Masukkan Harga Bahan">
                                     
                                         @error('harga')
@@ -136,7 +140,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group mb-3">
-                                        <label class="font-weight-bold">Jumlah</label>
+                                        <label>Jumlah</label>
                                         <input type="number" class="form-control @error('jumlah') is-invalid @enderror" name="jumlah" value="{{ old('jumlah', $product->jumlah) }}" placeholder="Masukkan Jumlah Bahan">
                                     
                                         @error('jumlah')
