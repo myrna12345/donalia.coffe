@@ -39,6 +39,11 @@
             font-size: 1.5rem; /* Ukuran font judul disamakan dengan halaman sebelumnya */
             font-weight: bold; /* Menebalkan teks judul */
         }
+
+        /* Membuat label menjadi bold */
+        label {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>

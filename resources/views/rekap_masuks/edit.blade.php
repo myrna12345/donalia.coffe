@@ -39,6 +39,11 @@
             font-size: 1.5rem; /* Ukuran font judul lebih kecil seperti halaman create */
             font-weight: bold; /* Membuat judul menjadi tebal */
         }
+
+        /* Membuat label menjadi bold */
+        label {
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>

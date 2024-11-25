@@ -118,7 +118,7 @@
                     </div>
 
                     <!-- Add Rekap Masuk Button -->
-                    <a href="{{ route('rekap_masuks.create') }}" class="btn btn-md btn-custom mb-3" style="margin-top: 15px;">TAMBAH PRODUK</a>
+                    <a href="{{ route('rekap_masuks.create') }}" class="btn btn-md btn-custom mb-3" style="margin-top: 15px;">TAMBAH DATA</a>
 
                     <!-- Table Wrapper -->
                     <div class="table-wrapper">
