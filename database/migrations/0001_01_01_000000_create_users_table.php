@@ -11,32 +11,31 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Tabel users
         Schema::create('users', function (Blueprint $table) {
-            $table->id(); // Primary Key
+            $table->id();
             $table->string('name');
-            $table->string('email')->unique(); // Unique Key
+            $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
-            $table->timestamps(); // created_at dan updated_at
+            $table->foreignId('current_team_id')->nullable();
+            $table->string('profile_photo_path', 2048)->nullable();
+            $table->timestamps();
         });
 
-        // Tabel password_reset_tokens
         Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary(); // Primary Key
+            $table->string('email')->primary();
             $table->string('token');
             $table->timestamp('created_at')->nullable();
         });
 
-        // Tabel sessions
         Schema::create('sessions', function (Blueprint $table) {
-            $table->string('id')->primary(); // Primary Key
-            $table->foreignId('user_id')->nullable()->index(); // Relasi ke users
-            $table->string('ip_address', 45)->nullable(); // Untuk mendukung IPv4 dan IPv6
-            $table->text('user_agent')->nullable(); // Informasi browser
-            $table->longText('payload'); // Data sesi
-            $table->integer('last_activity')->index(); // Aktivitas terakhir
+            $table->string('id')->primary();
+            $table->foreignId('user_id')->nullable()->index();
+            $table->string('ip_address', 45)->nullable();
+            $table->text('user_agent')->nullable();
+            $table->longText('payload');
+            $table->integer('last_activity')->index();
         });
     }
 
@@ -45,9 +44,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        // Hapus tabel dalam urutan yang benar
-        Schema::dropIfExists('sessions'); // Hapus tabel sessions terlebih dahulu
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('users');
+        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('sessions');
     }
 };
