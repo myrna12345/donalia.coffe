@@ -74,6 +74,23 @@
         tr:hover {
             background-color: rgba(200, 200, 255, 0.5);
         }
+        .btn-logout {
+            background-color: #007bff;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .btn-logout:hover {
+            background-color: #0056b3;
+        }
+        .btn-logout:focus {
+            outline: none;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
     </style>
 </head>
 <body class="sb-nav-fixed">
@@ -102,15 +119,12 @@
                     </div>
                 </div>
                 <div class="sb-sidenav-footer">
-                <div class="flex justify-end">
-                    <form method="GET" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-                            Logout
-                        </button>
-                    </form>
-                </div>
-
+                    <div class="flex justify-end">
+                        <form method="GET" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn-logout">Logout</button>
+                        </form>
+                    </div>
                 </div>
             </nav>
         </div>
