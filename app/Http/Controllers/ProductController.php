@@ -124,4 +124,14 @@ class ProductController extends Controller
 
         return redirect()->route('products.index')->with('success', 'Data Berhasil Dihapus!');
     }
+    public function user(): View
+    {
+        // Ambil pengumuman terbaru dan paginasi
+        $product = Product::get();
+
+        // Hitung jumlah pengumuman
+
+        // Render view dengan data pengumuman dan jumlah pengumuman
+        return view('user.products', compact('product'));
+    }
 }
