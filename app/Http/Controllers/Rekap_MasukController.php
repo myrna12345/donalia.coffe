@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Rekap_Masuk;
 use Illuminate\Http\Request;
-
 class Rekap_MasukController extends Controller
 {
     /**
@@ -101,5 +100,13 @@ class Rekap_MasukController extends Controller
         $rekap_masuk->delete();
 
         return redirect()->route('rekap_masuks.index')->with('success', 'Data berhasil dihapus!');
+    }
+    public function rekapmasuk()
+    {
+        // Ambil data rekap_masuk
+        $rekap_masuk = Rekap_Masuk::all();
+
+        // Render view dengan data rekap_masuk
+        return view('user.rmasuk', compact('rekap_masuk'));
     }
 }
