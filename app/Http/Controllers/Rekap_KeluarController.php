@@ -147,4 +147,14 @@ class Rekap_KeluarController extends Controller
         //redirect to index
         return redirect()->route('rekap_keluars.index')->with(['success' => 'Data Berhasil Dihapus!']);
     }
+    public function rekapkeluar(): View
+    {
+        // Ambil pengumuman terbaru dan paginasi
+        $rekap_keluar = Rekap_Keluar::get();
+
+        // Hitung jumlah pengumuman
+
+        // Render view dengan data pengumuman dan jumlah pengumuman
+        return view('user.rkeluar', compact('rekap_keluar'));
+    }
 }
