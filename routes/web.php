@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Rekap_KeluarController;
+use App\Http\Controllers\Rekap_MasukController;
 
 // Route utama
 Route::get('/', function () {
@@ -50,3 +53,7 @@ Route::get('/logout', function () {
     // Redirect ke halaman utama setelah logout
     return redirect('/');
 })->name('logout');
+
+Route::get('/user/products', [ProductController::class, 'user'])->name('user.products');
+Route::get('/user/keluar', [Rekap_KeluarController::class, 'rekapkeluar'])->name('user.rkeluar');
+Route::get('/user/masuk', [Rekap_MasukController::class, 'rekapmasuk'])->name('user.rmasuk');
