@@ -1,11 +1,10 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "Dockerfile",
-      "use": "@vercel/docker"
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.6.0"
     }
-  ],
+  },
   "routes": [
     { "src": "/build/(.*)", "dest": "/public/build/$1" },
     { "src": "/(.*)", "dest": "/api/index.php" }
@@ -22,6 +21,6 @@
     "DB_USERNAME": "db2024_stormtorn"
   },
   "public": true,
-  "buildCommand": "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && composer install --no-dev --optimize-autoloader && npm install && npm run prod",
+  "buildCommand": "composer install --no-dev --optimize-autoloader && npm install && npm run prod",
   "outputDirectory": "public"
 }
